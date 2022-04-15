@@ -4,11 +4,14 @@ spring:
       enabled: ALWAYS
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/testing
-    username: root
-    password: password
+    url: jdbc:mysql://localhost:3306/test
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+    flyway:
+      enabled: true
+      validate-on-migrate: true
