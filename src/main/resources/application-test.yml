@@ -1,0 +1,10 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:mysql:8.0.22:///doesntmatter/ignored
+  jpa:
+    hibernate:
+      ddl-auto: create
