@@ -23,7 +23,7 @@ class UserController(
         newUser.name = userRequest.name
         newUser.email = userRequest.email
 
-        val response = userRepository.save(newUser)
+        val response = userRepository.save(userRequest.toUser())
         return ResponseEntity.status(HttpStatus.CREATED).body(response)
     }
 }
@@ -32,3 +32,7 @@ data class UserRequest(
     val name: String,
     val email: String
 )
+
+fun UserRequest.toUser(): User {
+    return User(name = this.name, email = this.email)
+}
