@@ -1,9 +1,8 @@
 package com.example.testco.users
 
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/users")
@@ -15,4 +14,21 @@ class UserController(
         val response = userRepository.findAll()
         return ResponseEntity.ok().body(response.toList())
     }
+
+    @PostMapping
+    fun create(
+        @RequestBody userRequest: UserRequest
+    ): ResponseEntity<User> {
+        val newUser = User()
+        newUser.name = userRequest.name
+        newUser.email = userRequest.email
+
+        val response = userRepository.save(newUser)
+        return ResponseEntity.status(HttpStatus.CREATED).body(response)
+    }
 }
+
+data class UserRequest(
+    val name: String,
+    val email: String
+)

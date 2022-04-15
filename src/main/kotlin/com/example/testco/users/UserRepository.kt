@@ -10,7 +10,7 @@ import javax.persistence.*
 class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0
+    var id: Long = 0L
 
     @Column(name = "name")
     var name: String = ""
@@ -20,7 +20,6 @@ class User {
 
     @CreatedDate
     var createdDate: Date = Date()
-
 }
 
 interface UserRepository : CrudRepository<User, Long>
